@@ -377,5 +377,36 @@
 		"prefix": "xyz",
 		"body":	"xyz=\"${1:0.0} ${2:0.0} ${3:0.0}\"",
 		"description": "Insert xyz"
+	},
+
+	"gazebo": {
+		"prefix": "gazebo",
+		"body": [
+			"<gazebo reference=\"${1:link_name}\">",
+			"\t<kp>${2:1000.0}</kp>\t<!-- Static contact stiffness coefficient -->",
+			"\t<kd>${3:10.0}</kd>\t<!-- Dynamic contact stiffness coefficient -->",
+			"\t<mu1>${4:1.0}</mu1>\t<!-- Static friction coefficient -->",
+			"\t<mu2>${5:1.0}</mu2>\t<!-- Dynamic friction coefficient -->",
+			"\t<material>${6:Gazebo/Green}</material>",
+			"</gazebo>"
+		],
+		"description": "Insert gazebo physical properties"
+
+	},
+	"transmission": {
+		"prefix": "transmission",
+		"body": [
+			"<transmission name=\"${1:trans1}\">",
+			"\t<type>${2:transmission_interface/SimpleTransmission}</type>\t<!-- Transmission type -->",
+			"\t<joint name=\"${3:joint_name}\">\t\t\t\t\t\t\t\t<!-- The joint the transmission is connected to -->",
+			"\t\t<hardwareInterface>${4:hardware_interface/EffortJointInterface}</hardwareInterface>\t<!-- Hardware interface (always EffortJointInterface with Gazebo) -->",
+			"\t</joint>",
+			"\t<actuator name=\"${5:motor1}\">",
+			"\t\t<hardwareInterface>${6:EffortJointInterface}</hardwareInterface>",
+			"\t\t<mechanicalReduction>${7:1.0}</mechanicalReduction>\t\t<!-- Mechanical reduction (gearing) -->",
+			"\t</actuator>",
+			"</transmission>"
+		],
+		"description": "Insert transmission/motor"
 	}
 }
